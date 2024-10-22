@@ -30,23 +30,5 @@ public class PlatMove : MonoBehaviour
             currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length; // 依次循环路点  
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        // 检查进入的对象是否是玩家  
-        if (collision.CompareTag("Player"))
-        {
-            // 将玩家的父物体设置为平台，使其跟随移动  
-            collision.transform.parent = transform;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        // 检查离开的对象是否是玩家  
-        if (collision.CompareTag("Player"))
-        {
-            // 将玩家的父物体设置回 null，解除跟随  
-            collision.transform.parent = null;
-        }
-    }
+    
 }

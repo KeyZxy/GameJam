@@ -12,7 +12,7 @@ public class LinesDrawer : MonoBehaviour
     private int cantDrawOverLayerIndex; // 不能绘制层的索引  
 
     [Space(30)]
-    private Color lineColor = Color.blue; // 线条颜色  
+    private Color lineColor = Color.green; // 线条颜色  
     public float linePointsMinDistance; // 点之间的最小距离  
     public float lineWidth; // 线条宽度  
 
@@ -22,7 +22,7 @@ public class LinesDrawer : MonoBehaviour
     private void Start()
     {
         cam = Camera.main; // 获取主摄像机  
-        cantDrawOverLayerIndex = LayerMask.NameToLayer("CantDrawOver"); // 获取不能绘制层的索引  
+       
     }
 
     private void Update()
@@ -102,11 +102,7 @@ public class LinesDrawer : MonoBehaviour
         else if (lineColor == Color.green)
         {
             currentLine.tag = "Air";
-            Rigidbody2D currentRigidbody = currentLine.gameObject.AddComponent<Rigidbody2D>();
-            if (currentRigidbody != null)
-            {
-                currentRigidbody.gravityScale = -1;
-            }
+            currentLine.StartFloatingAirParticles();
         }
         else if (lineColor == Color.yellow)
         {
