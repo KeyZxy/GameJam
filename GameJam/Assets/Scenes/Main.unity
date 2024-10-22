@@ -458,6 +458,10 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: 1757537453
       objectReference: {fileID: 0}
+    - target: {fileID: 8895478739197798064, guid: 9853630f056e7364b9f3a006046bd9f5, type: 3}
+      propertyPath: canAirControl
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
