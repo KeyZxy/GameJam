@@ -8,8 +8,8 @@ public class LinesDrawer : MonoBehaviour
 {
     public GameObject linePrefab; // 线条预设  
 
-    public LayerMask cantDrawOverLayer; // 不能绘制在此层上  
-    private int cantDrawOverLayerIndex; // 不能绘制层的索引  
+   // public LayerMask cantDrawOverLayer; // 不能绘制在此层上  
+    //private int cantDrawOverLayerIndex; // 不能绘制层的索引  
 
     [Space(30)]
     private Color lineColor = Color.green; // 线条颜色  

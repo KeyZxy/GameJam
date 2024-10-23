@@ -10,12 +10,18 @@ public class Talk : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Button.SetActive(true);
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Button.SetActive(true);
+        }
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-       Button.SetActive(false);
-        talkUI.SetActive(false);
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Button.SetActive(false);
+            talkUI.SetActive(false);
+        }
     }
 
 
