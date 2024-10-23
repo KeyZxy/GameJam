@@ -22,6 +22,8 @@ public class Player : MonoBehaviour
 
     // 这个角色控制器，是依靠刚体驱动的
     private Rigidbody2D m_Rigidbody2D;
+    public float climbSpeed = 5f; // 攀爬速度  
+    public bool isClimbing = false; // 是否正在攀爬  
 
     [Header("Events")]
     [Space]
@@ -46,6 +48,11 @@ public class Player : MonoBehaviour
         move = Input.GetAxis("Horizontal");
         move *= speed;
         jump = Input.GetButton("Jump");
+        // 检测是否在攀爬状态  
+        if (isClimbing)
+        {
+            HandleClimbing();
+        }
     }
     private void FixedUpdate()
     {
@@ -74,7 +81,29 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Ladder"))
+        {
+            isClimbing = true; // 进入梯子状态  
+            m_Rigidbody2D.gravityScale = 0; // 清除重力影响  
+        }
+    }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Ladder"))
+        {
+            isClimbing = false; // 离开梯子状态  
+            m_Rigidbody2D.gravityScale = 1; // 恢复重力影响  
+        }
+    }
+
+    private void HandleClimbing()
+    {
+        float verticalInput = Input.GetAxis("Vertical"); // 获取垂直输入  
+        m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, verticalInput * climbSpeed); // 更新角色的垂直速度  
+    }
     public void Move(float move, bool jump)
     {
         // 玩家在地面时，或者可以空中控制时，才能移动
