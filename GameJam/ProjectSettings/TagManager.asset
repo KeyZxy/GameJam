@@ -10,6 +10,7 @@ TagManager:
   - Background
   - Stage
   - Air
+  - Dirt
   layers:
   - Default
   - TransparentFX

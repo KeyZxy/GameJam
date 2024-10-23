@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3762505661718632860}
   - component: {fileID: 6467045660038054854}
   m_Layer: 0
-  m_Name: FireParticle
+  m_Name: FireBurnParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

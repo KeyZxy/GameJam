@@ -116,7 +116,15 @@ public class Line : MonoBehaviour
             lineRenderer.SetPosition(i, points[i]);
         }
     }
-
+    // 碰撞检测
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (lineColor == Color.yellow && collision.gameObject.CompareTag("Water"))
+        {
+            Debug.Log("Dirt线条与Water物体碰撞，Dirt线条将被销毁");
+            Destroy(gameObject); // 销毁 Dirt 线条
+        }
+    }
 
     public void AddPoint(Vector2 newPoint)
     {

@@ -83,7 +83,7 @@ public class LinesDrawer : MonoBehaviour
         {
             currentLine.tag = "Fire";
             Rigidbody2D currentRigidbody = currentLine.gameObject.AddComponent<Rigidbody2D>();
-            currentRigidbody.bodyType = RigidbodyType2D.Static;
+            currentRigidbody.gravityScale=0;
             // 在3秒后销毁当前线条
 
             // 停止所有火焰粒子效果
