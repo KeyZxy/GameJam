@@ -1,10 +1,11 @@
 using UnityEngine;
 using System;
 using System.Collections;
+using UnityEngine.EventSystems;
 /// <summary>  
 /// 画线控制器  
 /// </summary>  
-public class LinesDrawer : MonoBehaviour
+public class Draw : MonoBehaviour
 {
     public GameObject linePrefab; // 线条预设  
 
@@ -12,7 +13,7 @@ public class LinesDrawer : MonoBehaviour
     //private int cantDrawOverLayerIndex; // 不能绘制层的索引  
 
     [Space(30)]
-    private Color lineColor = Color.blue; // 线条颜色  
+    public Color lineColor = Color.blue; // 线条颜色  
     public float linePointsMinDistance; // 点之间的最小距离  
     public float lineWidth; // 线条宽度  
 
@@ -34,10 +35,10 @@ public class LinesDrawer : MonoBehaviour
     private void Update()
     {
         // 检测鼠标输入  
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
             BeginDraw(); // 开始绘制  
         if (currentLine != null)
-            Draw(); // 进行绘制  
+            Drawing(); // 进行绘制  
         if (Input.GetMouseButtonUp(0))
             EndDraw(); // 结束绘制  
     }
@@ -68,7 +69,7 @@ public class LinesDrawer : MonoBehaviour
     }
 
     // 画线进行中  
-    void Draw()
+    void Drawing()
     {
         // 获取当前鼠标位置并转换为世界坐标  
         Vector3 screenPos = Input.mousePosition; // 鼠标屏幕坐标  

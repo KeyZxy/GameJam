@@ -1,5 +1,8 @@
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -32,6 +35,9 @@ public class Player : MonoBehaviour
     public UnityEvent OnAirEvent;
 
     public bool isGrounded;
+
+    public List<Color> color;//玩家获得颜色
+    public Button[] button;
     [System.Serializable]
     public class BoolEvent : UnityEvent<bool> { }
 
@@ -79,6 +85,7 @@ public class Player : MonoBehaviour
         {
             HandleClimbing();
         }
+        ColorSelect();
     }
     private void FixedUpdate()
     {
@@ -106,12 +113,38 @@ public class Player : MonoBehaviour
             OnAirEvent.Invoke();
         }
     }
+    public void ColorSelect()
+    {
+        for (int i = 0; i < button.Length; i++)
+        {
+            button[i].gameObject.SetActive(false);
+        }
+        for (int i = 0; i < color.Count; i++) {
 
+            if (color[i] == Color.green)
+            {
+                button[0].gameObject.SetActive(true);
+            }
+            if (color[i] == Color.red)
+            {
+                button[1].gameObject.SetActive(true);
+            }
+            if (color[i] == Color.yellow)
+            {
+                button[2].gameObject.SetActive(true);
+            }
+            if (color[i] == Color.blue)
+            {
+                button[3].gameObject.SetActive(true);
+            }
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Ladder"))
         {
-            isClimbing = true; // 进入梯子状态  
+            isClimbing = true; // 进入梯子状态
+            //color.Add(Color.green);
             m_Rigidbody2D.gravityScale = 0; // 清除重力影响  
         }
     }
@@ -121,8 +154,10 @@ public class Player : MonoBehaviour
         if (collision.CompareTag("Ladder"))
         {
             isClimbing = false; // 离开梯子状态  
+            
             m_Rigidbody2D.gravityScale = 1; // 恢复重力影响  
         }
+
     }
 
     private void HandleClimbing()
