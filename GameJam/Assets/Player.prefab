@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 264261679386692880}
   - component: {fileID: 8895478739197798064}
   - component: {fileID: 5299792557481718501}
+  - component: {fileID: 5504238562446914335}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -163,6 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3965bfaf974d0e449b70978649d4e974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  move: 0
   speed: 5
   jumpForce: 400
   canAirControl: 0
@@ -173,7 +175,6 @@ MonoBehaviour:
   m_GroundCheck: {fileID: 6973608046223966306}
   climbSpeed: 5
   isClimbing: 0
-  animator: {fileID: 5299792557481718501}
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -181,6 +182,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   isGrounded: 0
+  color: []
+  button: []
 --- !u!95 &5299792557481718501
 Animator:
   serializedVersion: 5
@@ -191,7 +194,7 @@ Animator:
   m_GameObject: {fileID: 2005592233548233950}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b140f99eaf0912c489bd18d638940c47, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7386af384da76c343a4bfb393afdb866, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -202,6 +205,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5504238562446914335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2005592233548233950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce61e2a9d3647964a8b38507e258cc66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3678508371948736097
 GameObject:
   m_ObjectHideFlags: 0
