@@ -10,12 +10,12 @@ public class ReturnScript : MonoBehaviour
     void Start()
     {
         audioclip = GetComponent<AudioClip>();
-        //audiosource = GetComponent<AudioSource>();
+        audiosource = GetComponent<AudioSource>();
     }
     public void OnReturn()
     {
-        //audiosource.clip = audioclip;
-        //audiosource.Play();
+        audiosource.clip = audioclip;
+        audiosource.Play();
         SceneManager.LoadScene("StartScene");
     }
 }

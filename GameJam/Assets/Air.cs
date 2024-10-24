@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Air : MonoBehaviour
 {
+    public AudioSource au;
+    public AudioClip ex;
     // 碰撞进入时调用的方法  
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -14,7 +16,7 @@ public class Air : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Fire"))
         {
-
+            au.PlayOneShot(ex);
         }
     }
 }

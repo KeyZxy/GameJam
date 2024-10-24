@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AirObject : MonoBehaviour
 {
+    public AudioSource au;
+    public AudioClip ex;
     public ParticleSystem bomb; // 爆炸粒子系统
     public float explosionRadius = 2f; // 爆炸影响的半径
     private void OnCollisionEnter2D(Collision2D collision)
@@ -13,6 +15,7 @@ public class AirObject : MonoBehaviour
         {
             Debug.Log("火物体与气体粒子碰撞，触发爆炸粒子特效并销毁气体物体");
             CreateBomb(); // 触发爆炸粒子特效
+            au.PlayOneShot(ex);
             Destroy(gameObject); // 销毁气体物体  
         }
     }

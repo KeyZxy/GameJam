@@ -4,8 +4,9 @@ using System.Collections;
 
 public class Line : MonoBehaviour
 {
-
-
+    public AudioSource audioSource;
+    public AudioClip drop;
+    public float maxLineLength = 10f;//长度
     public LineRenderer lineRenderer;
     public EdgeCollider2D edgeCollider;
     // public Rigidbody2D rigidBody;
@@ -124,25 +125,73 @@ public class Line : MonoBehaviour
             Debug.Log("Dirt线条与Water物体碰撞，Dirt线条将被销毁");
             Destroy(gameObject); // 销毁 Dirt 线条
         }
+        if(lineColor == Color.yellow && collision.gameObject.CompareTag("Stage"))
+        {
+            audioSource.PlayOneShot(drop);
+        }
     }
 
     public void AddPoint(Vector2 newPoint)
     {
-        if (pointCount >= 1 && Vector2.Distance(newPoint, GetLastPoint()) < pointsMinDistance)
+        // If this is the first point, add it immediately
+        if (pointCount == 0)
+        {
+            points.Add(newPoint);
+            ++pointCount;
+
+            var circleCollider = this.gameObject.AddComponent<CircleCollider2D>();
+            circleCollider.offset = newPoint;
+            circleCollider.radius = circleColliderRadius;
+
+            lineRenderer.positionCount = pointCount;
+            lineRenderer.SetPosition(pointCount - 1, newPoint);
+
+            return;
+        }
+
+        // Check if the new point is far enough from the last point
+        float distanceToLastPoint = Vector2.Distance(newPoint, GetLastPoint());
+
+        if (distanceToLastPoint < pointsMinDistance)
             return;
 
+        // Calculate the current total length of the line
+        float currentLineLength = 0f;
+        for (int i = 1; i < points.Count; i++)
+        {
+            currentLineLength += Vector2.Distance(points[i - 1], points[i]);
+        }
+
+        // If adding the new segment exceeds max length, adjust the point position
+        if (currentLineLength + distanceToLastPoint > maxLineLength)
+        {
+            float remainingLength = maxLineLength - currentLineLength;
+
+            // Calculate the point at which the new segment should stop
+            Vector2 direction = (newPoint - GetLastPoint()).normalized;
+            newPoint = GetLastPoint() + direction * remainingLength;
+            distanceToLastPoint = remainingLength; // This will be used for the next steps
+        }
+
+        // Now add the point and update line and colliders
         points.Add(newPoint);
         ++pointCount;
 
-        var circleCollider = this.gameObject.AddComponent<CircleCollider2D>();
-        circleCollider.offset = newPoint;
-        circleCollider.radius = circleColliderRadius;
+        var circleCollider2D = this.gameObject.AddComponent<CircleCollider2D>();
+        circleCollider2D.offset = newPoint;
+        circleCollider2D.radius = circleColliderRadius;
 
         lineRenderer.positionCount = pointCount;
         lineRenderer.SetPosition(pointCount - 1, newPoint);
 
         if (pointCount > 1)
             edgeCollider.points = points.ToArray();
+
+        // If max length is reached, stop adding points
+        if (currentLineLength + distanceToLastPoint >= maxLineLength)
+        {
+            Debug.Log("Max line length reached.");
+        }
     }
 
     public Vector2 GetLastPoint()

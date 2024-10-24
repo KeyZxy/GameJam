@@ -24,20 +24,21 @@ public class Player : MonoBehaviour
     private Rigidbody2D m_Rigidbody2D;
     public float climbSpeed = 5f; // 攀爬速度  
     public bool isClimbing = false; // 是否正在攀爬  
-
+    public Animator animator;
     [Header("Events")]
     [Space]
 
     public UnityEvent OnLandEvent;
     public UnityEvent OnAirEvent;
 
+    public bool isGrounded;
     [System.Serializable]
     public class BoolEvent : UnityEvent<bool> { }
 
     private void Awake()
     {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
-
+        animator = GetComponent<Animator>();
         if (OnLandEvent == null)
             OnLandEvent = new UnityEvent();
         if (OnAirEvent == null)
@@ -47,6 +48,31 @@ public class Player : MonoBehaviour
     {
         move = Input.GetAxis("Horizontal");
         move *= speed;
+        float temp = move;
+        isGrounded = m_Grounded;
+        //动画
+        if (isGrounded)
+        {
+            animator.SetFloat("Speed", Mathf.Abs(temp));
+            animator.SetBool("JumpUp", false);
+            animator.SetBool("JumpDown", false);
+
+        }
+        else 
+        {
+            Vector3 vel=m_Rigidbody2D.velocity;
+            if (vel.y > 0) {
+                animator.SetBool("JumpUp", true);
+                animator.SetBool("JumpDown", false);
+            }
+            else
+            {
+                animator.SetBool("JumpUp", false);
+                animator.SetBool("JumpDown", true);
+            }
+        }
+
+        
         jump = Input.GetButton("Jump");
         // 检测是否在攀爬状态  
         if (isClimbing)

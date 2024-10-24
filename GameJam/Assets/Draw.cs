@@ -19,10 +19,16 @@ public class LinesDrawer : MonoBehaviour
     private Line currentLine; // 当前绘制的线条  
     private Camera cam; // 主摄像机  
 
+    //音效
+    public AudioSource audioSource;
+    public AudioClip burn;
+    public AudioClip flow;
+    public AudioClip wind;
+    public AudioClip dirt;
     private void Start()
     {
         cam = Camera.main; // 获取主摄像机  
-       
+       audioSource=gameObject.AddComponent<AudioSource>();
     }
 
     private void Update()
@@ -47,6 +53,16 @@ public class LinesDrawer : MonoBehaviour
         // 设置线条参数  
         //currentLine.UsePhysics(false); // 关闭物理模拟  
         currentLine.SetLineColor(lineColor); // 设置线条颜色  
+        if (lineColor == Color.green)
+        {
+            audioSource.PlayOneShot(wind);
+          
+        }
+        if (lineColor == Color.blue)
+        {
+            audioSource.PlayOneShot(flow);
+
+        }
         currentLine.SetPointsMinDistance(linePointsMinDistance); // 设置点之间的最小距离  
         currentLine.SetLineWidth(lineWidth); // 设置线条宽度  
     }
@@ -85,7 +101,7 @@ public class LinesDrawer : MonoBehaviour
             Rigidbody2D currentRigidbody = currentLine.gameObject.AddComponent<Rigidbody2D>();
             currentRigidbody.gravityScale=0;
             // 在3秒后销毁当前线条
-
+            audioSource.PlayOneShot(burn);
             // 停止所有火焰粒子效果
             currentLine.StopFireParticles();
 
@@ -97,16 +113,19 @@ public class LinesDrawer : MonoBehaviour
         else if (lineColor == Color.blue)
         {
             currentLine.tag = "Water";
+          
             currentLine.StartDroppingWaterParticles(); // 开始将水线拆分为粒子  
         }
         else if (lineColor == Color.green)
         {
             currentLine.tag = "Air";
+            
             currentLine.StartFloatingAirParticles();
         }
         else if (lineColor == Color.yellow)
         {
             currentLine.tag = "Dirt";
+            audioSource.PlayOneShot(dirt);
             Rigidbody2D currentRigidbody = currentLine.gameObject.AddComponent<Rigidbody2D>();
             if (currentRigidbody != null)
             {
