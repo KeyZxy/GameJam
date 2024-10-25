@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linePrefab: {fileID: 8130465377780098491, guid: 92f56b83922a80b4db6e2845c17216a6, type: 3}
+  lineColor: {r: 0.93710685, g: 0.9223724, b: 0.9223724, a: 0}
   linePointsMinDistance: 0.1
   lineWidth: 0.1
   audioSource: {fileID: 3230367269841733368}
