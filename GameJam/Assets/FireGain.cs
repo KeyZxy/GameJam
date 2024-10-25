@@ -10,7 +10,7 @@ public class FireGain : MonoBehaviour
          
         if (collision.gameObject.CompareTag("Player"))
         {
-            player.color.Add(Color.red);
+            player.AddColor(Color.red);
             Destroy(gameObject);
         }
     }

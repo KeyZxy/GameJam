@@ -10,7 +10,7 @@ public class WaterGain : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Player"))
         {
-            player.color.Add(Color.blue);
+            player.AddColor(Color.blue);
             Destroy(gameObject);
         }
     }

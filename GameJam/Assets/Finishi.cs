@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class AirGain : MonoBehaviour
+public class Finishi : MonoBehaviour
 {
     public Player player;
     private void OnCollisionEnter2D(Collision2D collision)
@@ -10,9 +11,8 @@ public class AirGain : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Player"))
         {
-            player.AddColor(Color.green);
-            Destroy(gameObject);
+            SceneManager.LoadScene("Start");
+
         }
-        
     }
 }

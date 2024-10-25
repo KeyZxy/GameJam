@@ -219,11 +219,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2384693613252417165, guid: 9853630f056e7364b9f3a006046bd9f5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17.83
+      value: -17.68
       objectReference: {fileID: 0}
     - target: {fileID: 2384693613252417165, guid: 9853630f056e7364b9f3a006046bd9f5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.7
+      value: -8.78
       objectReference: {fileID: 0}
     - target: {fileID: 2384693613252417165, guid: 9853630f056e7364b9f3a006046bd9f5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -272,7 +272,7 @@ PrefabInstance:
     - target: {fileID: 8895478739197798064, guid: 9853630f056e7364b9f3a006046bd9f5, type: 3}
       propertyPath: spawnPoint
       value: 
-      objectReference: {fileID: 1654498324}
+      objectReference: {fileID: 0}
     - target: {fileID: 8895478739197798064, guid: 9853630f056e7364b9f3a006046bd9f5, type: 3}
       propertyPath: canAirControl
       value: 1
@@ -2260,6 +2260,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2588171220377040481, guid: f7e4bd4d4d492a843935a9e1ef44b29f, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1757840063}
+    - target: {fileID: 2588171220377040481, guid: f7e4bd4d4d492a843935a9e1ef44b29f, type: 3}
       propertyPath: pauseMenuUI
       value: 
       objectReference: {fileID: 344122719}
@@ -3260,10 +3264,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1757537453
+  m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 1502981246, guid: 979acd348116e7b44875fd2990abb379, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3338,7 +3342,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 3.49, y: 3.29}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

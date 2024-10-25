@@ -10,7 +10,7 @@ public class DirtGain : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Player"))
         {
-            player.color.Add(Color.yellow);
+            player.AddColor(Color.yellow);
             Destroy(gameObject);
         }
     }

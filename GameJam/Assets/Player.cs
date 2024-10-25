@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -58,15 +57,52 @@ public class Player : MonoBehaviour
             OnLandEvent = new UnityEvent();
         if (OnAirEvent == null)
             OnAirEvent = new UnityEvent();
-       //color.Add(Color.red);
+       //color.Add(Color.green);
     }
     private void Start()
     {
+        // 加载颜色列表（如果存在已保存的颜色数据）
+
+            LoadColors();
+        
         // 将玩家的位置设置为出生点位置
         if (spawnPoint != null)
         {
             initialPosition = spawnPoint.position;
             Respawn();
+        }
+    }
+    public  void AddColor(Color newColor)
+    {
+        // 添加颜色并自动保存
+        color.Add(newColor);
+        SaveColors();
+    }
+    // 保存颜色列表
+    public  void SaveColors()
+    {
+        PlayerPrefs.SetInt("ColorCount", color.Count);
+        for (int i = 0; i < color.Count; i++)
+        {
+            string colorString = ColorUtility.ToHtmlStringRGBA(color[i]);
+            PlayerPrefs.SetString("PlayerColor_" + i, colorString);
+        }
+        PlayerPrefs.Save(); // 保存到磁盘
+    }// 加载颜色列表
+    public  void LoadColors()
+    {
+        if (PlayerPrefs.HasKey("ColorCount"))
+        {
+            color.Clear(); // 清空当前列表
+            int colorCount = PlayerPrefs.GetInt("ColorCount"); for (int i = 0; i < colorCount; i++)
+            {
+                string colorString = PlayerPrefs.GetString("PlayerColor_" + i);
+                Color loadedColor;
+                if (ColorUtility.TryParseHtmlString("#" + colorString, out loadedColor))
+                {
+                    color.Add(loadedColor);
+                }
+            }
         }
     }
     // 复活玩家

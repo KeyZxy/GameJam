@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,7 +7,8 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI; // 暂停菜单的UI面板
     public static bool GameIsPaused = false;
     private int currentLevel;  // 当前关卡
-    private string currentBackground;  // 当前背景
+
+
     // Update 每帧检测输入
     void Update()
     {
@@ -49,14 +51,16 @@ public class PauseMenu : MonoBehaviour
     }// 保存当前关卡和背景信息
     void SaveGameProgress()
     {
-        // 假设你有一个背景管理器 BackgroundManager 来获取当前背景
+
         currentLevel = SceneManager.GetActiveScene().buildIndex;  // 获取当前关卡索引
        
         PlayerPrefs.SetInt("SavedLevel", currentLevel);
 
+
+
         PlayerPrefs.Save();  // 保存
     }
-
+    
     // 退出游戏
     public void QuitGame()
     {
