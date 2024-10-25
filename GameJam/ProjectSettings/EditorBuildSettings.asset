@@ -11,4 +11,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Main.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/Level_1_happy.unity
+    guid: 0f014e03f120d7a48bc3887f090aae1e
+  - enabled: 1
+    path: Assets/Scenes/Level_2_anger.unity
+    guid: 86627f241a5fc814db5e83f47d38072d
+  - enabled: 1
+    path: Assets/Scenes/Level_3_sad.unity
+    guid: 318ebc8d812a29847966f9d939bafb6a
+  - enabled: 1
+    path: Assets/Scenes/Level_4_fun.unity
+    guid: d7fa77cd95c5ce0448952d30dacd477c
   m_configObjects: {}

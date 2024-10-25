@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour
@@ -38,6 +39,14 @@ public class Player : MonoBehaviour
 
     public List<Color> color;//玩家获得颜色
     public Button[] button;
+
+    public Transform spawnPoint;  // 玩家出生点
+    private Vector3 initialPosition;  // 玩家初始位置
+    public float fallTimeLimit = 2.0f;  // 玩家下落时间限制（超过该时间判定死亡）
+
+    private float fallTimer = 0f;  // 记录玩家下落的时间
+    private bool isFalling = false;  // 是否正在下落
+    private float fallThreshold = -0.1f;  // 下落的速度阈值（控制何时算作下落）
     [System.Serializable]
     public class BoolEvent : UnityEvent<bool> { }
 
@@ -49,17 +58,42 @@ public class Player : MonoBehaviour
             OnLandEvent = new UnityEvent();
         if (OnAirEvent == null)
             OnAirEvent = new UnityEvent();
-       // color.Add(Color.green);
+       //color.Add(Color.red);
     }
+    private void Start()
+    {
+        // 将玩家的位置设置为出生点位置
+        if (spawnPoint != null)
+        {
+            initialPosition = spawnPoint.position;
+            Respawn();
+        }
+    }
+    // 复活玩家
+    public void Respawn()
+    {
+        // 设置玩家位置为出生点
+        transform.position = initialPosition;
+        fallTimer = 0f;  // 重置下落计时器
+        isFalling = false;
+
+    }
+    public void OnDeath()
+    {
+        // 重新加载当前关卡
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     private void Update()
     {
         move = Input.GetAxis("Horizontal");
         move *= speed;
         float temp = move;
         isGrounded = m_Grounded;
-       
 
-        
+        CheckFall();
+
+
         jump = Input.GetButton("Jump");
         // 检测是否在攀爬状态  
         if (isClimbing)
@@ -67,6 +101,30 @@ public class Player : MonoBehaviour
             HandleClimbing();
         }
         ColorSelect();
+    }
+    // 检查玩家是否下落
+    void CheckFall()
+    {
+        // 检查玩家是否在下落
+        if (m_Rigidbody2D.velocity.y < fallThreshold)
+        {
+            if (!isFalling)
+            {
+                isFalling = true;  // 玩家开始下落
+                fallTimer = 0f;  // 重置计时器
+            }
+            fallTimer += Time.deltaTime;  // 记录下落的时间// 如果下落时间超过了限制，判定玩家死亡
+            if (fallTimer >= fallTimeLimit)
+            {
+                OnDeath();
+            }
+        }
+        else
+        {
+            // 玩家不在下落时重置状态
+            isFalling = false;
+            fallTimer = 0f;
+        }
     }
     private void FixedUpdate()
     {

@@ -16,7 +16,7 @@ public class UXChangeResolution : MonoBehaviour
         dropdown.ClearOptions();
         for (int i = 0; i < resolution.Length; i++)
         {
-            string option = resolution[i].width + "x" + resolution[i].height;
+            string option = resolution[i].width + "¡Á" + resolution[i].height;
             dropdown.options.Add(new Dropdown.OptionData(option));
         }
         int presentResoIndex = System.Array.FindIndex(resolution, r => r.width == Screen.width && r.height == Screen.height);

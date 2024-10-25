@@ -13,6 +13,7 @@ public class BackGroundChange : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         playercolor = player.GetComponent<Player>();
+
     }
 
 
@@ -22,16 +23,19 @@ public class BackGroundChange : MonoBehaviour
         if (playercolor.color != null && playercolor.color.Count > 0)
         {
 
-            bg[1].gameObject.SetActive(true);
+            bg[1].enabled=true;
             cameraLookat.ChangeBackground(bg[1]);
-            bg[0].gameObject.SetActive(false); 
+            bg[0].enabled=false;
+           
         }
         else
         {
 
-            bg[0].gameObject.SetActive(true);
+            bg[0].enabled = true;
             cameraLookat.ChangeBackground(bg[0]);
-            bg[1].gameObject.SetActive(false); 
+            bg[1].enabled = false;
+
         }
     }
+   
 }
