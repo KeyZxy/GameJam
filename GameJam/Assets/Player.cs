@@ -72,7 +72,14 @@ public class Player : MonoBehaviour
             Respawn();
         }
     }
-    public  void AddColor(Color newColor)
+    
+    private void OnApplicationQuit()
+    {
+        PlayerPrefs.DeleteAll();  // 清空所有保存的进度
+        PlayerPrefs.Save();
+    }
+
+    public void AddColor(Color newColor)
     {
         // 添加颜色并自动保存
         color.Add(newColor);
