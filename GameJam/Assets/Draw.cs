@@ -48,6 +48,12 @@ public class Draw : MonoBehaviour
     // 开始画线  
     void BeginDraw()
     {
+        // 检查颜色是否为允许的颜色
+        if (lineColor != Color.red && lineColor != Color.yellow && lineColor != Color.blue && lineColor != Color.green)
+        {
+            Debug.LogWarning("当前颜色不允许绘制");
+            return;
+        }
         // 实例化线預設  
         currentLine = Instantiate(linePrefab, this.transform).GetComponent<Line>();
 
@@ -71,6 +77,7 @@ public class Draw : MonoBehaviour
     // 画线进行中  
     void Drawing()
     {
+        if (currentLine == null) return;
         // 获取当前鼠标位置并转换为世界坐标  
         Vector3 screenPos = Input.mousePosition; // 鼠标屏幕坐标  
         Vector3 worldPos = cam.ScreenToWorldPoint(screenPos);
