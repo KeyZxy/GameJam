@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
         FindObjectOfType<GameManager>().LoadSavedGame();
 
     }
-    
+
     public void LoadSavedGame()
     {
         // 加载保存的关卡和背景
@@ -25,5 +25,13 @@ public class GameManager : MonoBehaviour
             int savedLevel = PlayerPrefs.GetInt("SavedLevel");
             SceneManager.LoadScene(savedLevel);
         }
+        else
+        {
+            // 如果没有保存的进度，加载第一关
+            StartNewGame();
+        }
+    } public void StartNewGame()
+        {
+            SceneManager.LoadScene(1);  // 假设第1关是索引1
+        }
     }
-}
