@@ -1416,7 +1416,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   au: {fileID: 1389760281}
   ex: {fileID: 8300000, guid: 4d94566df8167d54c8ae9eb82ecff0c4, type: 3}
-  bomb: {fileID: 3762505661718632860, guid: 88408b5e13f221f49b9a9ee76cea1b8e, type: 3}
+  bomb: {fileID: 45098876685993976, guid: 24c0901265a6b844a91dcd64cb9792f9, type: 3}
   explosionRadius: 2
 --- !u!61 &490913697
 BoxCollider2D:
