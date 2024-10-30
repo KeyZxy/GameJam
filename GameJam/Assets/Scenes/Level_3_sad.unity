@@ -483,7 +483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 582fbdb73bd39f54a9093bb3791759b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disappearTime: 2
+  disappearTime: 5
   respawnTime: 3
 --- !u!19719996 &147942985
 TilemapCollider2D:
@@ -1142,7 +1142,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1499,7 +1499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 582fbdb73bd39f54a9093bb3791759b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disappearTime: 2
+  disappearTime: 5
   respawnTime: 3
 --- !u!19719996 &703726611
 TilemapCollider2D:
