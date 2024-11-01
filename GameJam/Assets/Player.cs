@@ -58,7 +58,8 @@ public class Player : MonoBehaviour
             OnLandEvent = new UnityEvent();
         if (OnAirEvent == null)
             OnAirEvent = new UnityEvent();
-       //color.Add(Color.red);
+       //color.Add(Color.blue);
+        
     }
     private void Start()
     {

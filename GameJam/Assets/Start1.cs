@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StartGame : MonoBehaviour
+public class Start1 : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene("Intro");
+        SceneManager.LoadScene("Level_1_happy");
     }
 }
